@@ -1,0 +1,28 @@
+{% extends 'news/base.html' %}
+
+{% block content %}
+<style>
+    .button {
+    background-color: #007bff; /* Ko'k rang */
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Qorong'i ko'k */
+    transform: scale(1.05);
+}
+
+</style>
+    <h1>{{ post.title }}</h1>
+    <img style="width:30%;" src="{{ news.image.url }}">
+        <p>{{ news.publish_time }}</p>
+        <h7 style="font-size:1.2rem;">{{ news.body | linebreaks }}</h7>
+
+    <button class="button"><a href="javascript:history.back()">Orqaga qaytish</a></button>
+{% endblock %}
