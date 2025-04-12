@@ -67,8 +67,3 @@ jQuery(window).load(function() { // makes sure the whole site is loaded
         'overflow': 'visible'
     });
 })
-<script>
-    jQuery(document).ready(function($) {
-        $("#ticker01").liScroll();
-    });
-</script>

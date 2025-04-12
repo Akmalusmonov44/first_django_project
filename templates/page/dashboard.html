@@ -1,0 +1,172 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Foydalanuvchi profile {% endblock title %}
+
+{% block content %}
+<style>
+    /* Container for the profile section */
+    .profile-container {
+        max-width: 800px;
+        margin: 40px auto;
+        padding: 30px;
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Header styles */
+    .profile-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .profile-header h2 {
+        color: #333;
+        font-size: 28px;
+        margin-bottom: 10px;
+    }
+
+    /* Profile image styling */
+    .profile-image {
+        display: block;
+        margin: 0 auto 20px;
+        border-radius: 10px;
+        max-width: 200px;
+        height: auto;
+        border: 2px solid #ddd;
+    }
+
+    /* Info section styling */
+    .info-section {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .info-section label {
+        font-weight: bold;
+        color: #555;
+        width: 120px;
+        display: inline-block;
+    }
+
+    .info-section input {
+        width: 100%;
+        max-width: 400px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        background-color: #fff;
+        color: #333;
+        font-size: 16px;
+    }
+
+    /* Links styling */
+    .links-section {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .links-section a {
+        text-decoration: none;
+        color: #007bff;
+        font-size: 16px;
+        margin: 0 15px;
+        transition: color 0.3s ease;
+    }
+
+    .links-section a:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+
+    /* Logout link */
+    .logout-link {
+        display: block;
+        text-align: right;
+        margin-bottom: 20px;
+    }
+
+    .logout-link a {
+        color: #dc3545;
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.3s ease;
+    }
+
+    .logout-link a:hover {
+        color: #a71d2a;
+        text-decoration: underline;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+        .profile-container {
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .info-section input {
+            max-width: 100%;
+        }
+
+        .profile-header h2 {
+            font-size: 24px;
+        }
+    }
+</style>
+
+<section style="margin-top:35rem;">
+<div class="profile-container">
+    <!-- Logout Link -->
+    <div class="logout-link">
+        <a href="{% url 'logout' %}">Chiqish</a>
+    </div>
+
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <h2>Xush kelipsiz, {{ user.username }}</h2>
+        <h2>Malumotlaringiz</h2>
+    </div>
+
+    <!-- Profile Image -->
+    {% if profile and profile.photo %}
+        <img src="{{ profile.photo.url }}" class="profile-image" alt="Profile Photo">
+    {% else %}
+        <p style="text-align: center; color: #777;">Profil rasmi yuklanmagan</p>
+    {% endif %}
+
+    <!-- User Information -->
+    <div class="info-section">
+        <div>
+            <label>Foydalanuvchi:</label>
+            <input value="{{ user.username }}" readonly>
+        </div>
+        <div>
+            <label>Email:</label>
+            <input value="{{ user.email }}" readonly>
+        </div>
+        <div>
+            <label>Ismingiz:</label>
+            <input value="{{ user.first_name }}" readonly>
+        </div>
+        <div>
+            <label>Familyangiz:</label>
+            <input value="{{ user.last_name }}" readonly>
+        </div>
+        <div>
+            <label>Tug'ilgan yil:</label>
+            <input value="{{ profile.date_of_birth }}" readonly>
+        </div>
+    </div>
+
+    <!-- Links Section -->
+    <div class="links-section">
+        <a href="{% url 'password_reset' %}">Parolni unutdingizmi?</a>
+        <a href="{% url 'password_change' %}">Parolni almashtirish</a>
+    </div>
+</div>
+</section>
+{% endblock content %}

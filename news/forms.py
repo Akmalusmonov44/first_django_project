@@ -5,9 +5,12 @@ class CommentForm(forms.ModelForm):
 
     class Meta:
         model = Comment
-        fields = '__all__'
+        fields = ['user','body']
 
 class ContactForm(forms.ModelForm):
     class Meta:
         model = Contact
         fields = '__all__'
+
+
+

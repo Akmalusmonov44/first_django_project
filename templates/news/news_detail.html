@@ -1,5 +1,5 @@
 {% extends 'news/base.html' %}
-
+{% load hitcount_tags %}
 {% block content %}
 <style>
     .button {
@@ -18,11 +18,15 @@
     transform: scale(1.05);
 }
 
-</style>
+</style><div></div>
     <h1>{{ post.title }}</h1>
     <img style="width:30%;" src="{{ news.image.url }}">
+<h1>{{ news.title }}</h1>
+<span class="alert-info">Ko'rilganlar soni: {% get_hit_count for news %}</span>
         <p>{{ news.publish_time }}</p>
-        <h7 style="font-size:1.2rem;">{{ news.body | linebreaks }}</h7>
-
-    <button class="button"><a href="javascript:history.back()">Orqaga qaytish</a></button>
+        <h7 style="font-size:1.5rem;">{{ news.body | linebreaks }}</h7>
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<a href="{% url 'news_update' news.slug %}">Tahrirlash</a>  |
+<a href="{% url 'news_delete' news.slug %}  ">O'chirish</a>  |
+{% endif %}
 {% endblock %}

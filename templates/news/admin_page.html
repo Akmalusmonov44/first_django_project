@@ -1,0 +1,63 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Admin sahifasi {% endblock title %}
+
+{% block content %}
+<style>
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.admin-table th {
+    background-color: #4CAF50;
+    color: white;
+    padding: 12px 15px;
+    text-align: left;
+}
+
+.admin-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #ddd;
+}
+
+.admin-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.admin-table tr:hover {
+    background-color: #eafaea;
+}
+</style>
+
+<h1>Admin sahifasi</h1>
+<h3>Barcha adminlar</h3>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Username</th>
+            <th>Ismi</th>
+            <th>Familiya</th>
+            <th>Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for admin in admin_users %}
+        <tr>
+            <td>{{ admin.username }}</td>
+            <td>{{ admin.first_name }}</td>
+            <td>{{ admin.last_name }}</td>
+            <td>{{ admin.email }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+  <h2><a href="{% url 'news_create' %}" class="text-primary">Yangilik qo'shish</a></h2>
+{% endblock content %}
