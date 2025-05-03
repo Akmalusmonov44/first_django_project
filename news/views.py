@@ -19,8 +19,8 @@ from hitcount.views import HitCountMixin
 from unicodedata import category
 
 from . import forms
-from .models import News, Category, Comment, Contact
-from .forms import ContactForm, CommentForm
+from .models import News, Category, Contact
+from .forms import ContactForm
 from .permission import OnlySuperUser
 
 
@@ -46,25 +46,9 @@ def news_detail(request, slug):
         hitcontext['hit_message'] = hit_count_response.hit_message
         hitcontext['total_hits'] = hits
 
-    comments = news.comments.filter(active=True)
-    news_comment = None
-
-    if request.method == "POST":
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            news_comment = comment_form.save(commit=False)
-            news_comment.news = news
-            news_comment.save()
-
-            return redirect(news.get_absolute_url())
-    else:
-        comment_form = CommentForm()
 
     context = {
         'news': news,
-        'comments': comments,
-        'news_comment': news_comment,
-        'comment_form': comment_form
     }
 
     return render(request, 'news/news_detail.html', context)
@@ -198,7 +182,7 @@ class NewsDeleteView(OnlySuperUser,DeleteView):
 class NewsCreateView(OnlySuperUser,CreateView):
     model = News
     template_name = 'crud/news_create.html'
-    fields = ('title', 'slug','body', 'image', 'category', 'status',)
+    fields = ('title','title_uz','title_en','title_ru', 'slug','body','body_uz','body_en','body_ru', 'image', 'category', 'status',)
 
 
 @login_required
