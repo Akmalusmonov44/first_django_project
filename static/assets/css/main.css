@@ -1,0 +1,47 @@
+.news_grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Kartochkalar ekranga moslashadi */
+    gap: 20px; /* Kartochkalar orasidagi bo‘shliq */
+    padding: 20px 0;
+}
+
+.news_card {
+    background: #fff; /* Oq fonda kartochka */
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.news_card:hover {
+    transform: translateY(-5px); /* Hover effekti */
+}
+
+.featured_img img {
+    width: 100%;
+    height: 180px; /* Rasm balandligi */
+    object-fit: cover; /* Rasmlarni sig‘dirish */
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.news_info {
+    padding: 15px;
+}
+
+.news_info h4 {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 10px;
+}
+
+.news_info a {
+    text-decoration: none;
+    color: #333;
+}
+
+.news_info p {
+    font-size: 14px;
+    color: #666;
+    margin: 0;
+}

@@ -1,0 +1,32 @@
+{% extends 'news/base.html' %}
+{% load hitcount_tags %}
+{% block content %}
+<style>
+    .button {
+    background-color: #007bff; /* Ko'k rang */
+    color: white;
+    padding: 8px 16px;
+    font-size: 16px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    background-color: #0056b3; /* Qorong'i ko'k */
+    transform: scale(1.05);
+}
+
+</style><div></div>
+    <h1>{{ post.title }}</h1>
+    <img style="width:30%;" src="{{ news.image.url }}">
+<h1>{{ news.title }}</h1>
+<span class="alert-info">Ko'rilganlar soni: {% get_hit_count for news %}</span>
+        <p>{{ news.publish_time }}</p>
+        <h7 style="font-size:1.5rem;">{{ news.body | linebreaks }}</h7>
+{% if request.user.is_authenticated and request.user.is_superuser %}
+<a href="{% url 'news_update' news.slug %}">Tahrirlash</a>  |
+<a href="{% url 'news_delete' news.slug %}  ">O'chirish</a>  |
+{% endif %}
+{% endblock %}

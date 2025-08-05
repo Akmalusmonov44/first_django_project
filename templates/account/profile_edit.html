@@ -1,0 +1,132 @@
+{% extends 'news/base.html' %}
+{% load static %}
+
+{% block title %} Foydalanuvchi ma'lumotlarini o'zgartirish {% endblock title %}
+
+{% block content %}
+<style>
+    /* Main container for the edit form */
+    .edit-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 30px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Header styling */
+    .edit-header {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    .edit-header h1 {
+        color: #333;
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .edit-header p {
+        color: #666;
+        font-size: 14px;
+    }
+
+    /* Form styling */
+    .edit-form {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    /* Styling for form.as_p generated <p> tags */
+    .edit-form p {
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .edit-form label {
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+    }
+
+    .edit-form input[type="text"],
+    .edit-form input[type="email"],
+    .edit-form input[type="date"],
+    .edit-form input[type="file"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        font-size: 16px;
+        color: #333;
+        background-color: #f9f9f9;
+        transition: border-color 0.3s ease;
+    }
+
+    .edit-form input:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+    }
+
+    /* Checkbox styling for "Clear" */
+    .edit-form input[type="checkbox"] {
+        margin-left: 5px;
+    }
+
+    /* Button styling */
+    .edit-form button {
+        padding: 12px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .edit-form button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Responsive design */
+    @media (max-width: 500px) {
+        .edit-container {
+            margin: 20px;
+            padding: 20px;
+        }
+
+        .edit-header h1 {
+            font-size: 20px;
+        }
+
+        .edit-form input,
+        .edit-form button {
+            font-size: 14px;
+        }
+    }
+</style>
+<section style="margin-top:35rem;">
+
+<div class="edit-container">
+    <!-- Edit Header -->
+    <div class="edit-header">
+        <h1>Foydalanuvchi ma'lumotlarini o'zgartirish</h1>
+        <p>Siz o'zingiz haqingizdagi malumotlarni o'zgartirishingiz mumkin</p>
+    </div>
+
+    <!-- Edit Form -->
+    <form method="post" enctype="multipart/form-data" class="edit-form">
+        {% csrf_token %}
+        {{ user_form.as_p }}
+        {{ profile_form.as_p }}
+        <button type="submit">Saqlash</button>
+    </form>
+</div>
+</section>
+{% endblock content %}

@@ -1,0 +1,39 @@
+#: .\config\settings.py:128
+msgid "Uzbek"
+msgstr "Узбекский"
+
+#: .\config\settings.py:129
+msgid "English"
+msgstr "Английский"
+
+#: .\config\settings.py:130
+msgid "Russian"
+msgstr "Русский"
+
+#: .\templates\news\index.html:8
+msgid " Bosh sahifa "
+msgstr " Главная страница "
+
+#: .\templates\news\index.html:27
+msgid " So'ngi yangiliklar "
+msgstr " Последние новости "
+
+#: .\templates\news\index.html:52
+msgid " Mahalla "
+msgstr " Махалля "
+
+#: .\templates\news\index.html:86
+msgid " xorijiy "
+msgstr " Зарубежные "
+
+#: .\templates\news\index.html:116
+msgid " Texnologiya "
+msgstr " Технологии "
+
+#: .\templates\news\index.html:146
+msgid " Sport "
+msgstr " Спорт "
+
+#: .\templates\news\index.html:181
+msgid " ommabob "
+msgstr " Популярное "
